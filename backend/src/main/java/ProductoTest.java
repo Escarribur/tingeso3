@@ -6,7 +6,7 @@ public class ProductoTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		fail("probando el jenkins pls");
 	}
 
 }
