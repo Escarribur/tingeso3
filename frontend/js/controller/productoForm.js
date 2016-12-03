@@ -1,14 +1,16 @@
 tingesoApp.controller('ProductoFormController',function($scope,$rootScope,$location,Productos_service){
 	$scope.newProducto = {
-		'fotoProducto':'test.jpg',
+		'fotoProducto':'Al momento de apretar submit cambia',
 		'idProducto': $rootScope.idProducto+1
 	};
 
-	$scope.submit = function(newProducto){
+
+	$scope.submit = function(newProducto,namefile){
 		//Funciones de validaciones
 		// Si hay algun error se cambian los scope.error y return;
 
 		//Logica variada
+		newProducto.fotoProducto = namefile;
 
 		Productos_service.createProducto(newProducto).then(function(response) {
 
@@ -21,6 +23,10 @@ tingesoApp.controller('ProductoFormController',function($scope,$rootScope,$locat
 			else if(response.status == 403) // ya existe ID
 			{
 				 alert(response.data.mensaje+". Status code 403");
+			}
+			else if(response.status == 204)
+			{
+				  $location.path('/');
 			}
 			else
 			{
